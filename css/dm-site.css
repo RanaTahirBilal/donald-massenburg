@@ -1,0 +1,171 @@
+/* Donald Massenburg site. Built on the MegaOne "brooklyn" demo shell (section ids kept).
+   All site styles use the dm- prefix. Loaded last.
+   Palette follows the demo's teal with its magenta as a warm second accent, darkened until it passes AA. */
+:root{
+  --dm-ink:#14222E;       /* 16.18 on white */
+  --dm-muted:#4A5763;     /*  7.41 on white, 6.86 on --dm-soft */
+  --dm-soft:#F2F7F8;
+  --dm-acc:#02AEB3;       /* the demo teal: rules and bars only (2.72 on white, never text) */
+  --dm-acc-ink:#036B6F;   /*  6.29 on white, 5.83 on --dm-soft: small text on light */
+  --dm-acc-lift:#5FD7DB;  /*  9.42 on --dm-ink: small text on dark */
+  --dm-green:#C32865;     /* the demo magenta, decorative bars only */
+  --dm-line:#D6E3E6;
+}
+
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:'Roboto',Arial,sans-serif;color:var(--dm-ink);background:#fff;font-size:17px;line-height:1.7;margin:0}
+h1,h2,h3,.dm-brand{font-family:'Oswald',Arial,sans-serif;letter-spacing:.3px}
+a{color:var(--dm-acc-ink)}
+a:hover{color:var(--dm-ink)}
+img{max-width:100%;height:auto;display:block}
+p{color:var(--dm-muted)}
+
+.dm-skip{position:absolute;left:-999px;top:0;background:#fff;color:var(--dm-ink);padding:8px 14px;z-index:100}
+.dm-skip:focus{left:8px}
+
+/* Header: fixed at top (the demo pinned its nav to the foot of the hero) */
+.dm-header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(20,34,46,.94);backdrop-filter:blur(6px)}
+.dm-header-row{display:flex;align-items:center;justify-content:space-between;height:68px}
+.dm-brand{color:#fff;font-weight:800;font-size:19px;text-decoration:none;letter-spacing:.2px}
+.dm-brand span{color:var(--dm-acc-lift);font-weight:600}
+.dm-brand:hover{color:#fff}
+.dm-nav{display:flex;gap:26px;align-items:center}
+.dm-nav a{color:#E6EEF1;font-weight:600;font-size:15px;text-decoration:none}
+.dm-nav a:hover{color:var(--dm-acc-lift)}
+.dm-nav .dm-nav-cta{background:var(--dm-acc-lift);color:var(--dm-ink);padding:8px 18px;border-radius:30px}
+.dm-nav .dm-nav-cta:hover{background:#fff;color:var(--dm-ink)}
+.dm-burger{display:none;background:none;border:0;color:#fff;font-size:24px;padding:6px 8px;cursor:pointer}
+
+.dm-drawer{position:fixed;top:0;right:0;bottom:0;width:300px;max-width:85vw;background:var(--dm-ink);z-index:60;transform:translateX(100%);transition:transform .3s ease;padding:70px 30px 30px;visibility:hidden}
+.dm-drawer.is-open{transform:none;visibility:visible}
+.dm-drawer nav a{display:block;color:#fff;font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:20px;text-decoration:none;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.dm-drawer nav a:hover{color:var(--dm-acc-lift)}
+.dm-drawer-close{position:absolute;top:18px;right:20px;background:none;border:0;color:#fff;font-size:26px;cursor:pointer}
+.dm-drawer-note{color:#C9D3D8;font-size:14px;margin-top:24px}
+
+/* Hero. The demo's .background-carousal carried a carousel and absolute slabs; reset them. */
+.dm-hero{position:relative;min-height:100vh;padding:140px 0 90px;
+  background:#14222E url(../img/hero.jpg) center right/cover no-repeat;display:flex;align-items:center}
+.dm-hero::before{content:"";position:absolute;inset:0; /* measured: lede needs the dark zone to reach ~60% */
+  background:linear-gradient(90deg,rgba(12,24,34,.93) 0%,rgba(12,24,34,.88) 44%,rgba(12,24,34,.5) 60%,rgba(12,24,34,0) 78%)}
+.dm-hero .container{position:relative}
+.dm-hero-text{max-width:660px}
+.dm-hero-lede{max-width:560px}
+.dm-hero h1{color:#fff;font-weight:800;font-size:48px;line-height:1.1;margin:10px 0 20px}
+.dm-hero-lede{color:#E6EEF1;font-size:19px}
+.dm-hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+
+.dm-eyebrow{text-transform:uppercase;letter-spacing:2px;font-weight:700;font-size:13px;color:var(--dm-acc-ink);margin-bottom:8px}
+.dm-eyebrow-lift{color:var(--dm-acc-lift)}
+
+.dm-btn{display:inline-block;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:15px;padding:13px 28px;border-radius:40px;text-decoration:none;border:2px solid transparent;cursor:pointer}
+.dm-btn-solid{background:var(--dm-acc-lift);color:var(--dm-ink)}
+.dm-btn-solid:hover{background:#fff;color:var(--dm-ink)}
+.dm-btn-ghost{border-color:#fff;color:#fff}
+.dm-btn-ghost:hover{background:#fff;color:var(--dm-ink)}
+
+.dm-section{padding:96px 0}
+.dm-soft{background:var(--dm-soft)}
+.dm-h2{font-size:36px;font-weight:700;line-height:1.2;margin-bottom:22px;color:var(--dm-ink)}
+.dm-h2::after{content:"";display:block;width:56px;height:4px;background:var(--dm-green);margin-top:16px;border-radius:2px}
+.dm-h3{font-size:22px;font-weight:700;margin:34px 0 14px}
+
+.dm-figure{margin:0;border-radius:14px;overflow:hidden;box-shadow:0 18px 40px rgba(20,34,46,.14)}
+.dm-figure-tall{margin-top:28px;max-width:420px}
+
+.dm-cards{margin-top:60px}
+.dm-card{background:#fff;border:1px solid var(--dm-line);border-top:4px solid var(--dm-acc);border-radius:12px;padding:30px 26px;height:100%}
+.dm-card i{font-size:30px;color:var(--dm-acc);margin-bottom:14px}
+.dm-card h3{font-size:20px;font-weight:700;margin-bottom:10px;color:var(--dm-ink)}
+.dm-card p{margin:0}
+.dm-cards .col-md-4{margin-bottom:24px}
+.dm-card-plain{border-top-color:var(--dm-green)}
+
+.dm-list{padding-left:18px;margin:0}
+.dm-list li{color:var(--dm-muted);margin-bottom:10px}
+.dm-list strong{color:var(--dm-ink)}
+.dm-small{font-size:15px}
+
+.dm-timeline{list-style:none;padding:0;margin:0;border-left:3px solid var(--dm-acc)}
+.dm-timeline li{position:relative;padding:0 0 22px 28px}
+.dm-timeline li::before{content:"";position:absolute;left:-9px;top:6px;width:15px;height:15px;border-radius:50%;background:#fff;border:3px solid var(--dm-acc)}
+.dm-timeline h3{font-size:19px;font-weight:700;margin:0 0 2px;color:var(--dm-ink)}
+.dm-timeline p{margin:0}
+
+/* Quote bands */
+.dm-band{position:relative;padding:110px 0;background:#14222E center/cover no-repeat;color:#fff}
+.dm-band::before{content:"";position:absolute;inset:0;background:rgba(12,24,34,.84)}
+.dm-band .container{position:relative;max-width:900px;text-align:center}
+.dm-band-a{background-image:url(../img/company.jpg);background-position:center 30%}
+.dm-band-b{background:linear-gradient(135deg,#14222E 0%,#113A44 100%)}
+.dm-band-b::before{display:none}
+.dm-quote-portrait{width:150px;height:150px;object-fit:cover;object-position:center 22%;border-radius:50%;border:4px solid var(--dm-acc-lift);margin:0 auto 28px}
+.dm-quote{margin:0}
+.dm-quote p{color:#fff;font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:32px;line-height:1.35}
+.dm-quote footer{color:var(--dm-acc-lift);font-weight:700;margin-top:14px;font-size:16px}
+.dm-band-note{color:#E6EEF1;margin-top:24px;font-size:17px}
+
+.dm-gallery figure{margin:0 0 24px;border-radius:12px;overflow:hidden}
+.dm-gallery img{transition:transform .5s ease}
+.dm-gallery figure:hover img{transform:scale(1.04)}
+.dm-disclosure{margin-top:10px;padding:16px 20px;background:var(--dm-soft);border-left:4px solid var(--dm-acc);color:var(--dm-ink);font-size:15px;border-radius:6px}
+
+/* Contact */
+.dm-contact{background:var(--dm-ink);padding:96px 0}
+.dm-contact .dm-h2{color:#fff}
+.dm-contact p{color:#C9D3D8}
+.dm-contact-line{color:#E6EEF1 !important}
+.dm-contact-line i{color:var(--dm-acc-lift);width:22px}
+.dm-contact a{color:var(--dm-acc-lift)}
+.dm-contact a:hover{color:#fff}
+.dm-form label{display:block;color:#fff;font-weight:600;font-size:15px;margin:14px 0 6px}
+.dm-form input,.dm-form textarea{width:100%;background:#21323F;border:1px solid #41586A;color:#fff;border-radius:8px;padding:12px 14px;font-size:16px}
+.dm-form input:focus,.dm-form textarea:focus{outline:2px solid var(--dm-acc-lift);border-color:var(--dm-acc-lift)}
+.dm-form .dm-btn{margin-top:8px}
+.dm-form-note{margin:10px 0 6px}
+.dm-honey{display:none !important}
+
+.dm-foot{background:#0B1720;padding:22px 0}
+.dm-foot p{color:#C9D3D8;margin:0;font-size:14px;text-align:center}
+
+a:focus-visible,button:focus-visible{outline:3px solid var(--dm-acc-lift);outline-offset:2px}
+
+@media (max-width:991px){
+  .dm-nav{display:none}
+  .dm-burger{display:block}
+  .dm-hero{background-position:72% center}
+  .dm-hero::before{background:linear-gradient(180deg,rgba(12,24,34,.72) 0%,rgba(12,24,34,.9) 45%)}
+  .dm-hero h1{font-size:40px}
+  .dm-section{padding:70px 0}
+  .dm-h2{font-size:30px}
+  .dm-quote p{font-size:25px}
+}
+@media (max-width:575px){
+  .dm-hero h1{font-size:34px}
+  .dm-hero-lede{font-size:17px}
+  .dm-brand span{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .dm-drawer,.dm-gallery img{transition:none}
+}
+
+/* bundle.min.css sets "a:focus, button:focus { color: inherit }" (0,1,1), which beats
+   single-class colours and made the focused drawer close button ink on ink. Restate them. */
+.dm-drawer-close:focus,.dm-burger:focus,.dm-brand:focus{color:#fff}
+.dm-nav a:focus{color:#E6EEF1}
+.dm-nav .dm-nav-cta:focus,.dm-btn-solid:focus{color:var(--dm-ink)}
+.dm-btn-ghost:focus{color:#fff}
+.dm-drawer nav a:focus{color:#fff}
+.dm-contact a:focus{color:var(--dm-acc-lift)}
+.dm-skip:focus{color:var(--dm-ink)}
+
+/* Donald Massenburg additions */
+.dm-card i{color:var(--dm-acc-ink)}
+.dm-band-a{background:linear-gradient(135deg,#14222E 0%,#113A44 100%)}
+.dm-band-a::before{display:none}
+.dm-gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 25%}
+.dm-conditions{columns:2;column-gap:32px;padding-left:18px;margin:0}
+.dm-conditions li{color:var(--dm-muted);margin-bottom:8px;break-inside:avoid}
+@media (max-width:575px){.dm-conditions{columns:1}}
+.dm-contact-portrait{width:140px;height:140px;object-fit:cover;object-position:center 20%;border-radius:50%;border:4px solid var(--dm-acc-lift);margin-bottom:24px}
